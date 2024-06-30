@@ -1,0 +1,105 @@
+﻿<Window x:Class="demo.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:demo"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Пользовательское окно" Height="800" Width="1280"
+        MinHeight="800"
+        MinWidth="1280"
+        MaxHeight="800"
+        MaxWidth="1280">
+    <Grid Background="#BC91E7">
+        <Grid Visibility="Visible" x:Name="Main_Grid">
+            <TextBox x:Name="Login_Text" FontSize="30px" HorizontalAlignment="Left" Height="49" Margin="510,267,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="350"/>
+            <TextBox x:Name="Password_Text" FontSize="30px" HorizontalAlignment="Left" Height="50" Margin="510,409,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="350"/>
+            <Button Background="#DAF7A6" FontWeight="Bold" FontSize="40px" Content="Войти" HorizontalAlignment="Left" Margin="510,489,0,0" VerticalAlignment="Top" Width="350" Height="78" Click="Input_Button_Click"/>
+            <Label FontWeight="Bold" FontSize="40px" Content="Логин" HorizontalAlignment="Left" Margin="510,200,0,0" VerticalAlignment="Top" Width="232"/>
+            <Label FontWeight="Bold" FontSize="40px" Content="Пароль" HorizontalAlignment="Left" Margin="510,345,0,0" VerticalAlignment="Top" Width="232"/>
+            <Button Background="Wheat" FontSize="40px" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="850,650,0,0" VerticalAlignment="Top" Width="400" Height="60" Click="Registration_Button_Click"/>
+        </Grid>
+        <Grid Visibility="Collapsed" x:Name="Registration_Grid" >
+            <TextBox x:Name="Login_Reg_Text" FontSize="30px" HorizontalAlignment="Left" Height="45" Margin="528,147,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="210"/>
+            <TextBox x:Name="Password_Reg_Text" FontSize="30px" HorizontalAlignment="Left" Height="45" Margin="528,252,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="210"/>
+            <TextBox x:Name="Mail_Reg_Text" FontSize="30px" HorizontalAlignment="Left" Height="45" Margin="528,357,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="210"/>
+            <TextBox x:Name="FIO_Reg_Text" FontSize="30px" HorizontalAlignment="Left" Height="44" Margin="529,457,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="210"/>
+            <Label FontSize="30px" Content="Логин" HorizontalAlignment="Left" Margin="528,92,0,0" VerticalAlignment="Top"/>
+            <Label FontSize="30px" Content="Пароль" HorizontalAlignment="Left" Margin="528,197,0,0" VerticalAlignment="Top"/>
+            <Label FontSize="30px" Content="Почта" HorizontalAlignment="Left" Margin="528,302,0,0" VerticalAlignment="Top"/>
+            <Label FontSize="30px" Content="ФИО" HorizontalAlignment="Left" Margin="529,402,0,0" VerticalAlignment="Top"/>
+            <Button Click="Reg_Button_Click" FontSize="30px" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="486,542,0,0" VerticalAlignment="Top" Width="315"/>
+
+        </Grid>
+        <Grid x:Name="User_Grid" Visibility="Collapsed">
+            <TextBox x:Name="Equipment_Text" FontSize="30px" HorizontalAlignment="Left" Height="112" Margin="349,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="304"/>
+            <TextBox x:Name="Description_Text" FontSize="30px" HorizontalAlignment="Left" Height="265" Margin="74,392,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="566"/>
+            <Label Content="Оборудование:" FontSize="30px" HorizontalAlignment="Left" Margin="68,121,0,0" VerticalAlignment="Top" Width="252" Height="62"/>
+            <Label Content="Тип поломки:" FontSize="30px" HorizontalAlignment="Left" Margin="92,251,0,0" VerticalAlignment="Top" Width="252" Height="62"/>
+            <Label Content="Описание проблемы:" FontSize="30px" HorizontalAlignment="Left" Margin="186,325,0,0" VerticalAlignment="Top" Width="314" Height="62"/>
+            <Button Click="Application_Button_Click" FontSize="30px" Content="Отправить" HorizontalAlignment="Left" Margin="242,662,0,0" VerticalAlignment="Top" Width="230" Height="76"/>
+            <Label Content="Оставить заявку" FontWeight="Bold" FontSize="30px" HorizontalAlignment="Left" Margin="186,29,0,0" VerticalAlignment="Top" Width="268" Height="62"/>
+            <Label Content="Ваши заявки" FontWeight="Bold" FontSize="30px" HorizontalAlignment="Left" Margin="926,29,0,0" VerticalAlignment="Top" Width="208" Height="62"/>
+            <ScrollViewer  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="789,96,35,316">
+                <ItemsControl x:Name="ApplicationsTable" ItemsSource="{Binding Applications}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="1" BorderBrush="Black" Margin="5">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Margin="5" Width="Auto" TextWrapping="Wrap">
+                                    <Run Text="Оборудование: "/>
+                                    <LineBreak/>
+                                    <Run Text="{Binding equipment}"/>
+                                    </TextBlock>
+                                    <TextBlock  Margin="5" Width="Auto" TextWrapping="Wrap">
+                                    <Run Text="Описание: "/>
+                                    <LineBreak/>
+                                    <Run Text="{Binding description}"/>
+                                    </TextBlock>
+                                    <TextBlock  Margin="5" Width="Auto" TextWrapping="Wrap">
+                                    <Run Text="Дата поступления заявки: "/>
+                                    <LineBreak/>
+                                    <Run Text="{Binding date}"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="5" Width="Auto" TextWrapping="Wrap">
+                                    <Run Text="Тип неисправности: "/>
+                                    <LineBreak/>
+                                    <Run Text="{Binding name}"/>
+                                    </TextBlock>
+                                    <TextBlock Margin="5" Width="Auto" TextWrapping="Wrap">
+                                    <Run Text="Статус: "/>
+                                    <LineBreak/>
+                                    <Run Text="{Binding status}"/>
+                                    </TextBlock>
+
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+            <ComboBox x:Name="Defect_ComboBox" FontSize="30px" HorizontalAlignment="Left" Margin="349,260,0,0" VerticalAlignment="Top" Width="304" Height="44">
+                <ComboBoxItem Content="Дефект"></ComboBoxItem>
+                <ComboBoxItem Content="Повреждение"></ComboBoxItem>
+                <ComboBoxItem Content="Нарушение функционирования"></ComboBoxItem>
+                <ComboBoxItem Content="Отказ"></ComboBoxItem>
+                <ComboBoxItem Content="Сбой"></ComboBoxItem>
+                <ComboBoxItem Content="Износ"></ComboBoxItem>
+                <ComboBoxItem Content="Другое"></ComboBoxItem>
+            </ComboBox>
+            <Button Click="Quality_Button_Click" Background="LightBlue" FontSize="30px" Content="Оценка качества" HorizontalAlignment="Left" Margin="905,613,0,0" VerticalAlignment="Top" Width="340" Height="63"/>
+        </Grid>
+        <Grid x:Name="Quality_Grid" Visibility="Collapsed">
+            <Label FontSize="40px" Content="Оценка качества обслуживания" HorizontalAlignment="Left" Margin="334,52,0,0" VerticalAlignment="Top"/>
+            <Label FontSize="20px" Content="Для того чтобы оценить качество обслуживания, отсканируйте QR-code представленный ниже." HorizontalAlignment="Left" Margin="156,183,0,0" VerticalAlignment="Top"/>
+            <Button FontSize="30px" Background="Wheat" Click="Back_Button_Click" Content="Назад" HorizontalAlignment="Left" Margin="555,648,0,0" VerticalAlignment="Top" Width="150"/>
+            <Image Margin="425,238,445,183" Source="/Image1.png" Stretch="Fill"/>
+        </Grid>
+    </Grid>
+</Window>
